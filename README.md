@@ -16,7 +16,7 @@ The source of transactions is provided as a csv file
 - The main test class is **com.meb.TransactionAnalyserTest.java**
 
 **Test data**
-- The test data is listed in **src/test/resources/transactions*.csv**
+- The test data is listed in **src/test/resources/transactions\*.csv**
 
 **Running the analyser**
 * Download the code
