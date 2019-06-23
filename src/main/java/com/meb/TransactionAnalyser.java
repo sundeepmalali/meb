@@ -92,10 +92,11 @@ public class TransactionAnalyser {
         LocalDateTime from = LocalDateTime.parse(fromDate, df);
         LocalDateTime to = LocalDateTime.parse(toDate, df);
 
+        // calculate incoming and outgoing balances
         BalanceTuple outBalance = calculateOutgoingBalance(accountId, from, to, txns);
         BalanceTuple inBalance = calculateIncomingBalance(accountId, from, to, txns);
         
-        // calculate the account balance from the final list of selected transactions
+        // calculate the relative balance and the transactions count
         Double relativeBalance = inBalance.getBalance() - outBalance.getBalance();
         int txnsSize = inBalance.getTxnsSize() + outBalance.getTxnsSize();
 
