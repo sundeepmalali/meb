@@ -3,6 +3,9 @@ package com.meb.vo;
 import java.time.LocalDateTime;
 
 /**
+ * This represents a single transaction record.
+ * The fields in this class correspond to the fields in the transaction file
+ * 
  * @author sundeep
  *
  */
