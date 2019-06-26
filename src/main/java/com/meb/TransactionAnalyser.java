@@ -43,7 +43,7 @@ public class TransactionAnalyser {
         }
 
         String fileName = args[0];
-        analyseTransactions(accountId, fromDate, toDate, fileName);
+        new TransactionAnalyser().analyseTransactions(accountId, fromDate, toDate, fileName);
     }
 
     /**
@@ -55,7 +55,7 @@ public class TransactionAnalyser {
      * @param fileName - file which contains the transaction records
      * 
      */
-    public static void analyseTransactions(String accountId, String fromDate, String toDate, String fileName) {
+    public void analyseTransactions(String accountId, String fromDate, String toDate, String fileName) {
         // validate the inputs
         if (!ValidatorUtil.validateInputFile(fileName)) {
             System.out.println("Either transaction file does not exist or is not in CSV format. Aborting...");
@@ -79,7 +79,7 @@ public class TransactionAnalyser {
      * @param fileName - file which contains the transaction records
      * 
      */
-    private static void calculateAccountBalance(String accountId, String fromDate, String toDate, String fileName) {
+    private void calculateAccountBalance(String accountId, String fromDate, String toDate, String fileName) {
         // read the transactions file 
         List<TransactionRecord> txns = InputIngester.readTransactions(fileName);
         if (txns.isEmpty()) {
@@ -115,7 +115,7 @@ public class TransactionAnalyser {
      * @return - object containing the balance and the no of transactions considered
      * 
      */
-    private static BalanceTuple calculateOutgoingBalance(String accountId, LocalDateTime from, 
+    private BalanceTuple calculateOutgoingBalance(String accountId, LocalDateTime from, 
                                                          LocalDateTime to, List<TransactionRecord> txns) {
         // get the list of reversal transactions for the given account and store their original transactions
         Set<String> origTxns = txns.stream()
@@ -149,7 +149,7 @@ public class TransactionAnalyser {
      * @return - object containing the balance and the no of transactions considered
      * 
      */
-    private static BalanceTuple calculateIncomingBalance(String accountId, LocalDateTime from,
+    private BalanceTuple calculateIncomingBalance(String accountId, LocalDateTime from,
                                                          LocalDateTime to, List<TransactionRecord> txns) {
         // filter out the transactions and transactions outside the date range
         List<TransactionRecord> finalTxns = txns.stream()
@@ -172,7 +172,7 @@ public class TransactionAnalyser {
      * @author sundeep
      *
      */
-    private static class BalanceTuple {
+    private class BalanceTuple {
         private Double balance;
         private int txnsSize;
         
